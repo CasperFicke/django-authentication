@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
 
@@ -40,3 +40,15 @@ class SignUpForm(UserCreationForm):
     self.fields['password2'].label = ''
     self.fields['password2'].widget.attrs['placeholder'] = 'confirm password'
     self.fields['password2'].help_text = '<small>Enter the same password as before, for verification.</small>'
+
+class EditProfileForm(UserChangeForm):
+  password = forms.CharField(label='', widget=forms.TextInput(attrs={'type': 'hidden'}))
+  
+  class Meta:
+    model = User
+    # exclude = ()
+    fields = ('username',
+              'first_name',
+              'last_name',
+              'email',
+              'password')
