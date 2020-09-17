@@ -6,4 +6,10 @@
 
   <h1>home</h1>
 
+  {% if user.is_authenticated %}
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>email: {{ user.email }}</p>
+  {% endif %}
+
 {% endblock %}
